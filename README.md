@@ -2,7 +2,7 @@
 
 > A Vue.js project
 
-> Scramble - A Vue.js Game is a Word Game developed by Muthu Kumaran. Built using Vue.js and Vuex (JavaScript framework). Find all possible words from the jumbled letters. Find all words to get bonus points.
+> Scramble - A Vue.js Game is a Word Game. Built using Vue.js and Vuex (JavaScript framework). Find all possible words from the jumbled letters. Find all words to get bonus points.
 
 ## Play Game
 [http://iamkumaran.github.io/scramble-a-vue-js-game/](http://iamkumaran.github.io/scramble-a-vue-js-game/)
