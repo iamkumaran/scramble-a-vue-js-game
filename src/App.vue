@@ -15,7 +15,7 @@
               <p class="error" v-if="errorMessage">{{errorMessage}}</p>
             </transition>
             <ul id="drop-area">
-              <letter v-for="i in gameData.c.ques.length" v-bind:data="dropAreaData(i)" v-bind:index="i-1" v-bind:key="i-1" class="inactive" v-on:click.native="letterDown($event, dropArea[i-1])"></letter>
+              <letter v-for="i in gameData.c.ques.length" v-bind:data="dropAreaData(i)" v-bind:index="i-1" v-bind:key="i-1" class="inactive" v-on:click.native="letterDown($event, dropArea[i-1])" :data-id="dropArea[i-1]"></letter>
             </ul>
             <ul id="q-area">
               <letter v-for="(data, i) in gameData.c.ques" v-bind:data="data" v-bind:index="i" v-bind:key="i" v-on:click.native="letterUp($event, data)" :data-id="data"></letter>
@@ -31,6 +31,7 @@
             <h3 style="text-align:center">How To Play</h3>
             <p>There are 5 jumbled letters. Arrange the letters to form possible WORDS.</p>
             <p>Click on YELLOW balls to move letters up to form WORDS. <b>&lt;Submit&gt;</b> button will be enabled once there are 3 letters at top.</p>
+            <p>Use &lt;keyboard&gt; (A-Z) keys to move letter UP or DOWN and use &lt;ENTER&gt; key to submit the word.</p>
             <p>At-least one 5 letter word is required to go next level.</p>
             <p>Find all words to earn bonus points {{$store.state.bonusScore}}.</p>
 
@@ -136,7 +137,6 @@ export default {
       e.stopPropagation();
       if (this.dropArea.indexOf(val) > -1) return false;
 
-      // clone element
       var currElem = e.currentTarget;
       this.letterAction(currElem, 'letterUp', val);
     },
@@ -154,6 +154,7 @@ export default {
       if (!data.trim()) return false;
       if (currElem.classList.contains('animating')) return false;
 
+      // clone element
       var cloneLI = currElem.cloneNode(true);
       cloneLI.style.top = (type === 'letterUp') ? '200px' : '50px';
       var clonersElem = document.querySelector('#cloners');
@@ -190,7 +191,7 @@ export default {
         left: liStyles.left
 
       }, {
-        duration: 250,
+        duration: 150,
         complete: function (elements) {
           // $this.$store.dispatch(type, {value:data});
 
@@ -228,7 +229,7 @@ body{font-family: sans-serif;}
 .logo{text-align: center;}
 .site-logo{position:absolute;top: -14px;z-index:1;}
 .site-logo img{width:50px;height:50px;}
-.how-to-play{position: absolute;z-index: 2;width: 99%;height: 380px;background: rgba(255, 255, 255, 0.87);border-radius: 13px;top: 45px;padding: 13px;box-sizing: border-box;font-size: 18px;}
+.how-to-play{position: absolute;z-index: 2;width: 99%;height: 415px;background: rgba(255, 255, 255, 0.87);border-radius: 13px;top: 45px;padding: 13px;box-sizing: border-box;font-size: 18px;}
 #game-menu .site-logo{top: -6px;}
 #gameApp .game-container{
   position: relative;

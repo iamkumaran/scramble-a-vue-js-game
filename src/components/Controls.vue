@@ -25,10 +25,47 @@ export default {
       return !!this.$store.state.gameData.c.lastword;
     }
   },
-
+  mounted: function () {
+    document.addEventListener('keydown', this.keyEvents, false);
+  },
+  beforeDestroy: function () {
+    document.removeEventListener('keydown', this.keyEvents, false);
+  },
   methods: {
+    keyEvents: function (e) {
+      var keynum;
+      if (window.event) { // IE
+        keynum = e.keyCode;
+      } else if (e.which) { // Netscape/Firefox/Opera
+        keynum = e.which;
+      }
+
+      var elem;
+      var keys = String.fromCharCode(keynum).toUpperCase();
+
+      // checking for only A-Z letters
+      if (/^[A-Z]+$/.test(keys)) {
+        if (this.$store.state.dropArea.indexOf(keys) !== -1) {
+          elem = document.querySelector('#drop-area li[data-id=' + keys.toUpperCase() + ']');
+          if (elem) {
+            this.$emit('bringDownAll', elem, 'letterDown', keys);
+          }
+        } else {
+          elem = document.querySelector('#q-area li[data-id=' + keys + ']');
+          if (elem && elem.classList.contains('inactive') !== -1) {
+            this.$emit('bringDownAll', elem, 'letterUp', keys);
+          }
+        }
+      }
+
+      // Enter key Action
+      if (keynum === 13) {
+        this.submitAction();
+      }
+    },
     submitAction: function () {
       var word = this.$store.state.dropArea.join('');
+      if (!word) return false;
       var i = this.$store.state.gameData.c.opt.indexOf(word);
       var isAlreadyFound = this.$store.state.gameData.c.userAnswers.indexOf(word);
       if (i !== -1 && isAlreadyFound === -1) {
