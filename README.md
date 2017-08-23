@@ -1,6 +1,11 @@
-# scramble-a-vue-js-game
+# Scramble - A Vue.js Game
 
 > A Vue.js project
+
+> It's a word game, built using Vue.js and Vuex.
+
+## Play Game
+[http://iamkumaran.github.io/scramble-a-vue-js-game/](http://iamkumaran.github.io/scramble-a-vue-js-game/)
 
 ## Build Setup
 
