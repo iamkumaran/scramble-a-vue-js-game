@@ -9,6 +9,11 @@
 
 ## How to Play
 
+> There are 5 jumbled letters. Arrange the letters to form possible WORDS.
+> Click on YELLOW balls to move letters up to form WORDS. <b>&lt;Submit&gt;</b> button will be enabled once there are 3 letters at top.
+> Use &lt;keyboard&gt; (A-Z) keys to move letter UP or DOWN and use &lt;ENTER&gt; key to submit the word.
+> At-least one 5 letter word is required to go next level.
+> Find all words to earn bonus points.
 
 ## Build Setup
 
